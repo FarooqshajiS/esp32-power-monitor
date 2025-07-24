@@ -31,7 +31,7 @@ const chart = new Chart(document.getElementById('resistancePowerChart'), {
   }
 });
 
-const socket = new WebSocket('ws://192.168.x.x:81'); // replace with ESP32 IP
+const socket = new WebSocket('ws://192.168.4.2'); // replace with ESP32 IP
 
 socket.onopen = () => {
   statusText.textContent = 'Status: Connected ✅';
