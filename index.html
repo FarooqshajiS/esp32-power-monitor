@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ESP32 Resistance vs Power</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Live Power Monitoring</h1>
+    <div class="live-values">
+      <p>Voltage: <span id="voltage">0</span> V</p>
+      <p>Current: <span id="current">0</span> A</p>
+      <p>Power: <span id="power">0</span> W</p>
+      <p>Resistance: <span id="resistance">0</span> Ω</p>
+    </div>
+    <canvas id="powerChart" width="400" height="200"></canvas>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
