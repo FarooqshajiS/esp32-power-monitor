@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verification of Maximum Power Transfer Theorem</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #003f5c;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    h2 {
+      color: #003f5c;
+    }
+    .contact {
+      background: #eee;
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+    ul {
+      list-style-type: square;
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Verification of Maximum Power Transfer Theorem</h1>
+  </header>
+  <div class="container">
+    <h2>Project Description</h2>
+    <p>
+      This project verifies the Maximum Power Transfer Theorem
+      for purely resistive circuit, which states that maximum
+      power is delivered to the load when the load resistance
+      equals the source resistance.This verification is carried 
+      out using a virtua lab simulation,ensuring accurate 
+      observation and analysis of the theorem's validity.
+
+    </p>
+
+    <h2 style="margin-top:40px;">Theory</h2>
+    <p>
+      Maximum power is delivered from a source to a load when the load resistance  is equal 
+      to the source’s internal (Thevenin) resistance  as seen from the load terminals. 
+      <li>
+      <strong>At R<sub>L</sub> = R<sub>Th</sub>:</strong> 
+      Load power is maximized, but efficiency is only <strong>50%</strong> — half the power is lost in the internal resistance.
+    </li>
+    <li>
+      <strong>If R<sub>L</sub> &gt; R<sub>Th</sub>:</strong> 
+      Efficiency increases, but power delivered to the load decreases.
+    </li>
+    <li>
+      <strong>If R<sub>L</sub> &lt; R<sub>Th</sub>:</strong> 
+      More power is dissipated inside the source, and the load receives less power.
+    </li>
+     <strong>Note:</strong> R<sub>L</sub> is the <strong>load resistance</strong>, and R<sub>Th</sub> is the 
+    <strong>source resistance</strong> (Thevenin’s equivalent resistance).
+    <div style="background:#f9f9f9; padding:15px; border-radius:8px; max-width:600px;">
+  <h3 style="color:#004080; text-align:center;">Steps to Find Maximum Power Transferred</h3>
+  <ol style="line-height:1.6; padding-left:20px;">
+    <li>Remove the load resistor (<strong>R<sub>L</sub></strong>) from the circuit.</li>
+    <li>Compute the open-circuit Thevenin voltage (<strong>V<sub>Th</sub></strong>) across the load terminals.</li>
+    <li>Find the equivalent Thevenin resistance (<strong>R<sub>Th</sub></strong>) by deactivating all independent sources.</li>
+    <li>Set <strong>R<sub>L</sub> = R<sub>Th</sub></strong> for maximum power transfer.</li>
+    <li>
+      Calculate the maximum load current:  
+      <div style="margin-left:20px; font-family:monospace;">
+        I<sub>L,max</sub> = V<sub>Th</sub> / (2 × R<sub>Th</sub>)
+      </div>
+    </li>
+    <li>
+      Compute the maximum power:  
+      <div style="margin-left:20px; font-family:monospace;">
+        P<sub>max</sub> = V<sub>Th</sub><sup>2</sup> / (4 × R<sub>Th</sub>)
+      </div>
+    </li>
+  </ol>
+</div>
+    </p>
+<div style="background:#fdfdfd; padding:15px; border-radius:8px; max-width:650px;">
+  <h2 style="color:#003f5c; text-align:left;">📌 Project Details</h2>
+  
+  <h3 style="color:#003f5c;">⚙️ Hardware Used</h3>
+  <ul style="line-height:1.6; padding-left:20px;">
+    <li>ESP32 development board</li>
+    <li>INA219 current and voltage sensor</li>
+    <li>MCP4110 digital potentiometer (256-step, SPI-based)</li>
+    <li>Voltage source (DC)</li>
+    <li>Resistor load (simulated via digital potentiometer)</li>
+    <li>Connecting wires & breadboard</li>
+  </ul>
+  
+  <h3 style="color:#003f5c;">📡 How It Works</h3>
+  <ul style="line-height:1.6; padding-left:20px;">
+    <li>ESP32 connects to Wi-Fi and starts a local server.</li>
+    <li>Resistance is varied using MCP4110 every 2 seconds.</li>
+    <li>INA219 reads current and voltage.</li>
+    <li>ESP32 calculates power and resistance.</li>
+    <li>Data is sent as JSON to the browser using AJAX.</li>
+    <li>Chart.js plots Power vs Resistance in real time.</li>
+  </ul>
+  
+  <h3 style="color:#003f5c;">🧾 Libraries Used</h3>
+  <ul style="line-height:1.6; padding-left:20px;">
+    <li><strong>WiFi.h</strong> – for Wi-Fi connection</li>
+    <li><strong>WebServer.h</strong> – to run HTTP server</li>
+    <li><strong>Adafruit_INA219.h</strong> – for sensor readings</li>
+    <li><strong>ArduinoJson.h</strong> (v7.4.2) – to format JSON output</li>
+    <li><strong>SPI.h</strong> – for SPI communication</li>
+    <li><strong>Chart.js</strong> (frontend) – for plotting</li>
+  </ul>
+  <h3 style="color:#003f5c;">🔎References</h3>
+  <ul style="line-height:1.6; padding-left:20px;">
+    <li>Virtual Labs,Ministry of Education,Government of India –  <a href="https://Vlab.co.in" target="_blank">Vlab.co.in</a></li>
+    <li>Ravish R Singh,Electrical Networks,McGrawHill Education,6th Edition,2017</li>
+  </ul>
+</div>
+    <h2>Circuit Diagram</h2>
+    <p>(Insert your circuit diagram image here later)</p>
+
+  
+    </div>
+  </div>
+</body>
+</html>
