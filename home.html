@@ -6,56 +6,135 @@
   <title>ESP32 Virtual Lab | Home</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    .home-container {
-      max-width: 600px;
-      margin: 50px auto;
-      text-align: center;
-      background: #2e2e3e;
-      padding: 40px;
-      border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      color: #ffffff;
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f6fa;
+      color: #222;
     }
-    h1 {
-      margin-bottom: 20px;
+    .header {
+      background: #003f5c;
+      color: #fff;
+      padding: 20px 0 20px 40px;
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
-    ul {
+    .container {
+      display: flex;
+      min-height: 90vh;
+    }
+    .sidebar {
+      width: 260px;
+      background: #018e98;
+      color: #fff;
+      padding: 30px 0 0 0;
+      min-height: 100vh;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.04);
+    }
+    .sidebar ul {
       list-style: none;
       padding: 0;
-      margin-bottom: 30px;
+      margin: 0;
     }
-    ul li {
-      padding: 5px 0;
-      font-size: 18px;
+    .sidebar li {
+      padding: 18px 40px;
+      font-size: 1.1rem;
+      border-bottom: 1px solid #00b6c2;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .sidebar li:hover, .sidebar li.active {
+      background: #00b6c2;
+      color: #fff;
+    }
+    .sidebar .submenu {
+      background: #00b6c2;
+      padding-left: 20px;
+      display: none;
+    }
+    .sidebar .submenu li {
+      border-bottom: none;
+      font-size: 1rem;
+      padding: 10px 20px;
+      color: #ffe082;
+    }
+    .sidebar .submenu li:hover {
+      background: #018e98;
+      color: #fff;
+    }
+    .main-content {
+      flex: 1;
+      padding: 40px 60px;
+      background: #fff;
+      min-height: 100vh;
     }
     .enter-button {
-      background-color: #00f7ff;
-      color: #1e1e2f;
-      border: none;
-      padding: 15px 30px;
-      font-size: 18px;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: 0.3s;
+      display: inline-block;
+      background: #003f5c;
+      color: #fff;
+      padding: 15px 35px;
+      border-radius: 8px;
+      font-size: 1.2rem;
       text-decoration: none;
+      margin-top: 30px;
+      transition: background 0.2s;
     }
     .enter-button:hover {
-      background-color: #00c0cc;
+      background: #018e98;
+      color: #fff;
+    }
+    @media (max-width: 900px) {
+      .container { flex-direction: column; }
+      .sidebar { width: 100%; min-height: unset; }
+      .main-content { padding: 20px; }
     }
   </style>
 </head>
 <body>
-  <div class="home-container">
-    <h1>🔬 ESP32 Virtual Lab Project</h1>
-    <h3>Team Members:</h3>
-    <ul>
-      <li>👤 Farooq Shaji</li>
-      <li>👤 Leo Toms </li>
-      <li>👤 Miya Binu</li>
-      <li>👤 Freya Abbas</li>
-      <li>👤 Member 5</li>
-    </ul>
-    <a href="index.html" class="enter-button">Enter Virtual Lab</a>
+  <div class="header">
+    ESP32 Virtual Lab
   </div>
+  <div class="container">
+    <nav class="sidebar">
+      <ul>
+        <li class="active">Home</li>
+        <li onclick="toggleSubmenu()">Creators & Roles ▼
+          <ul class="submenu" id="submenu">
+            <li>Farooq Shaji – Project Lead</li>
+            <li>Member 2 – Hardware Specialist</li>
+            <li>Member 3 – Software Developer</li>
+            <li>Member 4 – Documentation & Testing</li>
+          </ul>
+        </li>
+        <li onclick="location.href='about.html'">About Project</li>
+        <li onclick="location.href='contact.html'">Contact</li>
+      </ul>
+    </nav>
+  <div class="main-content">
+  <h1>Welcome to the ESP32 Virtual Lab Project</h1>
+  <p style="font-size: 17px; color: #222; margin-bottom: 30px;">
+    This project demonstrates the <strong>Maximum Power Transfer Theorem</strong> using real-time data from an <strong>ESP32</strong> microcontroller. 
+    We vary load resistance digitally through an <strong>MCP41010</strong> potentiometer and measure voltage and current with an <strong>INA219</strong> sensor. 
+    The results are displayed on a live dashboard, allowing us to analyze how power output changes with resistance and find the point of maximum power transfer.
+  </p>
+ 
+  <a href="index.html" class="enter-button">Enter Virtual Lab</a>
+</div>
+  </div>
+  <script>
+    function toggleSubmenu() {
+      var submenu = document.getElementById('submenu');
+      submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+    }
+    // Optional: Close submenu when clicking elsewhere
+    document.addEventListener('click', function(e) {
+      var submenu = document.getElementById('submenu');
+      if (!e.target.closest('.sidebar li')) {
+        submenu.style.display = 'none';
+      }
+    });
+  </script>
 </body>
 </html>
