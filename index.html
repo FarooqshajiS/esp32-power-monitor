@@ -12,19 +12,30 @@
       background: #f5f6fa;
       color: #222;
     }
+
     .header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
       background: #003f5c;
       color: #fff;
-      padding: 20px 0 20px 40px;
+      padding: 20px 40px;
       font-size: 2rem;
       font-weight: bold;
       letter-spacing: 1px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
+
+    .logo {
+      height: 50px;
+      width: auto;
+    }
+
     .container {
       display: flex;
       min-height: 90vh;
     }
+
     .sidebar {
       width: 260px;
       background: #018e98;
@@ -33,11 +44,13 @@
       min-height: 100vh;
       box-shadow: 2px 0 8px rgba(0,0,0,0.04);
     }
+
     .sidebar ul {
       list-style: none;
       padding: 0;
       margin: 0;
     }
+
     .sidebar li {
       padding: 18px 40px;
       font-size: 1.1rem;
@@ -45,31 +58,37 @@
       cursor: pointer;
       transition: background 0.2s;
     }
+
     .sidebar li:hover, .sidebar li.active {
       background: #00b6c2;
       color: #fff;
     }
+
     .sidebar .submenu {
       background: #00b6c2;
       padding-left: 20px;
       display: none;
     }
+
     .sidebar .submenu li {
       border-bottom: none;
       font-size: 1rem;
       padding: 10px 20px;
       color: #ffe082;
     }
+
     .sidebar .submenu li:hover {
       background: #018e98;
       color: #fff;
     }
+
     .main-content {
       flex: 1;
       padding: 40px 60px;
       background: #fff;
       min-height: 100vh;
     }
+
     .enter-button {
       display: inline-block;
       background: #003f5c;
@@ -81,10 +100,12 @@
       margin-top: 30px;
       transition: background 0.2s;
     }
+
     .enter-button:hover {
       background: #018e98;
       color: #fff;
     }
+
     @media (max-width: 900px) {
       .container { flex-direction: column; }
       .sidebar { width: 100%; min-height: unset; }
@@ -94,8 +115,10 @@
 </head>
 <body>
   <div class="header">
+    <img src="logo.png" alt="Logo" class="logo" />
     ESP32 Virtual Lab
   </div>
+
   <div class="container">
     <nav class="sidebar">
       <ul>
@@ -112,23 +135,24 @@
         <li onclick="location.href='contact.html'">Contact</li>
       </ul>
     </nav>
-  <div class="main-content">
-  <h1>Welcome to the ESP32 Virtual Lab Project</h1>
-  <p style="font-size: 17px; color: #222; margin-bottom: 30px;">
-    This project demonstrates the <strong>Maximum Power Transfer Theorem</strong> using real-time data from an <strong>ESP32</strong> microcontroller. 
-    We vary load resistance digitally through an <strong>MCP41010</strong> potentiometer and measure voltage and current with an <strong>INA219</strong> sensor. 
-    The results are displayed on a live dashboard, allowing us to analyze how power output changes with resistance and find the point of maximum power transfer.
-  </p>
- 
-  <a href="dashboard.html" class="enter-button">Enter Virtual Lab</a>
-</div>
+
+    <div class="main-content">
+      <h1>Welcome to the ESP32 Virtual Lab Project</h1>
+      <p style="font-size: 17px; color: #222; margin-bottom: 30px;">
+        This project demonstrates the <strong>Maximum Power Transfer Theorem</strong> using real-time data from an <strong>ESP32</strong> microcontroller. 
+        We vary load resistance digitally through an <strong>MCP41010</strong> potentiometer and measure voltage and current with an <strong>INA219</strong> sensor. 
+        The results are displayed on a live dashboard, allowing us to analyze how power output changes with resistance and find the point of maximum power transfer.
+      </p>
+      <a href="dashboard.html" class="enter-button">Enter Virtual Lab</a>
+    </div>
   </div>
+
   <script>
     function toggleSubmenu() {
       var submenu = document.getElementById('submenu');
       submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
     }
-    // Optional: Close submenu when clicking elsewhere
+
     document.addEventListener('click', function(e) {
       var submenu = document.getElementById('submenu');
       if (!e.target.closest('.sidebar li')) {
