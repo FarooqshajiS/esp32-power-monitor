@@ -7,22 +7,136 @@
   <title>ESP32 Power Analysis</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #e9eef2;
+      color: #222;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: #003f5c;
+    }
+
+    header p {
+      color: #555;
+      margin-top: 8px;
+      font-size: 1rem;
+    }
+
+    .status {
+      margin-top: 10px;
+      font-size: 0.95rem;
+      color: #018e98;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+
+    .card {
+      flex: 0 1 45%;
+      background: #f0faff;
+      border: 1px solid #b2ebf2;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .card h3 {
+      margin: 0;
+      color: #018e98;
+      font-weight: 600;
+    }
+
+    .value {
+      font-size: 2rem;
+      margin-top: 10px;
+      font-weight: bold;
+      color: #003f5c;
+    }
+
+    .controls {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .controls button {
+      padding: 12px 30px;
+      margin: 10px;
+      font-size: 1rem;
+      background-color: #003f5c;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .controls button:hover {
+      background-color: #018e98;
+    }
+
+    canvas {
+      margin-top: 40px;
+    }
+
+    @media (max-width: 700px) {
+      .card { flex: 0 1 100%; }
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>🔌 ESP32 Real-Time Power Analysis</h1>
-    <p>Live graph of Resistance vs Power, with voltage and current monitoring</p>
-    <div class="status" id="status">Status: Connecting...</div>
-  </header>
+  <div class="container">
+    <header>
+      <h1>🔌 ESP32 Real-Time Power Analysis</h1>
+      <p>Live graph of Resistance vs Power, with voltage and current monitoring</p>
+      <div class="status" id="status">Status: Connecting...</div>
+    </header>
 
-  <div class="cards">
-    <div class="card"><h3>Voltage (V)</h3><div class="value" id="voltage">--</div></div>
-    <div class="card"><h3>Current (A)</h3><div class="value" id="current">--</div></div>
-    <div class="card"><h3>Power (W)</h3><div class="value" id="power">--</div></div>
-    <div class="card"><h3>Resistance (Ω)</h3><div class="value" id="resistance">--</div></div>
+    <div class="cards">
+      <div class="card"><h3>Voltage (V)</h3><div class="value" id="voltage">--</div></div>
+      <div class="card"><h3>Current (A)</h3><div class="value" id="current">--</div></div>
+      <div class="card"><h3>Power (W)</h3><div class="value" id="power">--</div></div>
+      <div class="card"><h3>Resistance (Ω)</h3><div class="value" id="resistance">--</div></div>
+    </div>
+
+    <div class="controls">
+      <button onclick="startExperiment()">Start Experiment</button>
+      <button onclick="nextResistance()" disabled id="nextBtn">Increase Resistance</button>
+    </div>
+
+    <canvas id="resistancePowerChart" height="100"></canvas>
   </div>
 
-  <canvas id="resistancePowerChart" height="100"></canvas>
   <script src="script.js"></script>
+  <script>
+    function startExperiment() {
+      document.getElementById('nextBtn').disabled = false;
+    }
+
+    function nextResistance() {
+      if (socket && socket.readyState === WebSocket.OPEN) {
+        socket.send("next");
+      }
+    }
+  </script>
 </body>
 </html>
