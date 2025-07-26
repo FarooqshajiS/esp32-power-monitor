@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,29 +44,29 @@
     }
 
     .cards {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 20px;
-    }
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: nowrap; /* Prevent wrapping */
+        gap: 20px;
+        }
 
-   .card {
-      flex: 0 1 calc(50% - 20px); /* 2 per row with spacing */
-      background: #f0faff;
-      border: 1px solid #b2ebf2;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-      text-align: center;
-    }
+     .card {
+        flex: 1 1 22%;
+        min-width: 150px;
+        background: #f0faff;
+        border: 1px solid #b2ebf2;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        text-align: center;
+        }
 
 
     .card h3 {
-      margin: 0;
-      color: #018e98;
-      font-weight: 600;
-    }
+        margin: 0;
+        color: #018e98;
+        font-weight: 600;
+        }
 
     .value {
       font-size: 2rem;
