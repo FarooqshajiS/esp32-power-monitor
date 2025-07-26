@@ -31,35 +31,26 @@ const chart = new Chart(document.getElementById('resistancePowerChart'), {
   }
 });
 
-const socket = new WebSocket('ws://192.168.4.2'); // replace with ESP32 IP
+const socket = new WebSocket('ws://192.168.4.1:81'); // update to your ESP32's IP
 
 socket.onopen = () => {
-  statusText.textContent = 'Status: Connected ✅';
+  document.getElementById("status").textContent = "Status: Connected ✅";
+};
+
+socket.onerror = () => {
+  document.getElementById("status").textContent = "Status: Connection Failed ❌";
 };
 
 socket.onclose = () => {
-  statusText.textContent = 'Status: Disconnected ❌';
+  document.getElementById("status").textContent = "Status: Disconnected ❌";
 };
 
 socket.onmessage = (event) => {
   const data = JSON.parse(event.data);
-  const voltage = parseFloat(data.voltage);
-  const current = parseFloat(data.current);
-  const resistance = parseFloat(data.resistance);
-  const power = +(voltage * current).toFixed(2);
-
-  voltageDisplay.textContent = voltage.toFixed(2);
-  currentDisplay.textContent = current.toFixed(2);
-  powerDisplay.textContent = power;
-  resistanceDisplay.textContent = resistance.toFixed(2);
-
-  resistanceData.push(resistance.toFixed(2));
-  powerData.push(power);
-
-  if (resistanceData.length > 30) {
-    resistanceData.shift();
-    powerData.shift();
-  }
-
-  chart.update();
+  document.getElementById("voltage").textContent = data.voltage.toFixed(2);
+  document.getElementById("current").textContent = data.current.toFixed(3);
+  document.getElementById("power").textContent = data.power.toFixed(3);
+  document.getElementById("resistance").textContent = data.resistance.toFixed(2);
+  
+  // update chart here if needed
 };
