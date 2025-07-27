@@ -1,4 +1,4 @@
-const socket = new WebSocket('ws://192.168.4.1:81');
+const socket = new WebSocket('ws://192.168.4.2');
 
 socket.onopen = () => {
   document.getElementById("status").textContent = "Status: Connected ✅";
