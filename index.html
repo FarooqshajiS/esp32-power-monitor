@@ -6,17 +6,19 @@
   <title>ESP32 Virtual Lab | Home</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f6fa;
-      color: #222;
-    }
+    html, body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: #f5f6fa;
+}
 
     .header {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 15px;
       background: #003f5c;
       color: #fff;
       padding: 20px 40px;
@@ -29,6 +31,14 @@
     .logo {
       height: 50px;
       width: auto;
+      margin-right: 15px;
+    }
+
+    .contact-info {
+      font-size: 0.9rem;
+      text-align: right;
+      color: #eee;
+      line-height: 1.4;
     }
 
     .container {
@@ -88,6 +98,9 @@
       background: #fff;
       min-height: 100vh;
     }
+    .main-content h1 {
+      color: #033f5c;
+    }
 
     .enter-button {
       display: inline-block;
@@ -106,17 +119,48 @@
       color: #fff;
     }
 
+    footer {
+      background-color: #003f5c;
+      color: #eee;
+      text-align: center;
+      padding: 25px 20px;
+      font-size: 0.95rem;
+    }
+
+    footer a {
+      color: #ffe082;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
     @media (max-width: 900px) {
       .container { flex-direction: column; }
       .sidebar { width: 100%; min-height: unset; }
       .main-content { padding: 20px; }
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .contact-info {
+        text-align: left;
+        margin-top: 10px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="header">
-    <img src="logo.png" alt="Logo" class="logo" />
-    ESP32 Virtual Lab
+    <div style="display:flex; align-items:center;">
+      <img src="logo.png" alt="Logo" class="logo" />
+      ESP32 Virtual Lab
+    </div>
+    <div class="contact-info">
+      📧 farooqshaji@example.com<br>
+      📞 +91-9876543210
+    </div>
   </div>
 
   <div class="container">
@@ -125,9 +169,9 @@
         <li class="active">Home</li>
         <li onclick="toggleSubmenu()">Creators & Roles ▼
           <ul class="submenu" id="submenu">
-            <li>Farooq Shaji – Web& UI Developer</li>
+            <li>Farooq Shaji – Web & UI Developer</li>
             <li>Member 2 – Hardware Specialist</li>
-            <li>Member 3 – Embedded System Developer </li>
+            <li>Member 3 – Embedded System Developer</li>
             <li>Member 4 – Documentation & Research Analyst</li>
             <li>Member 5 – Circuit Design And Simulation</li>
           </ul>
@@ -147,6 +191,12 @@
       <a href="dashboard.html" class="enter-button">Enter Virtual Lab</a>
     </div>
   </div>
+
+  <footer>
+    📍 TKM College of Engineering, Kollam &nbsp;|&nbsp;
+    📧 <a href="mailto:farooqshaji@example.com">farooqshaji@example.com</a> &nbsp;|&nbsp;
+    ☎ +91-9876543210
+  </footer>
 
   <script>
     function toggleSubmenu() {
